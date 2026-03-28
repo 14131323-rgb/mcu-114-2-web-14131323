@@ -6,7 +6,7 @@ let products = [
 ];
 
 console.log(products);
-setProductDisplay(products[0]!, false);
+products[0]!.setDisplay(false);
 console.table(products);
 
 function setProductDisplay(product: Product, isShow: boolean) {
