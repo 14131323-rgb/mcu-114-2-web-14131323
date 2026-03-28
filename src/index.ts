@@ -9,6 +9,27 @@ let products = [
   new Product(6, "書籍 D", "博碩文化", 500, false, new Date("2024-4-10")),
 ];
 
-const displayProducts = products.filter((item) => item.isShow);
+const newProduct = new Product(0, "書籍 E", "博碩文化", 500, false, new Date("2024-4-10"));
+addProduct(newProduct);
+console.table(products);
 
-displayProducts.forEach((item) => console.table(item));
+removeProduct(6);
+console.table(products);
+
+removeProductById(4);
+console.table(products);
+
+function addProduct(product: Product): void {
+  const id = products.length === 0 ? 1 : Math.max(...products.map(({ id }) => id)) + 1;
+  product.id = id;
+  products.push(product);
+}
+
+function removeProduct(index: number): void {
+  products.splice(index, 1);
+}
+
+function removeProductById(removeId: number): void {
+  const index = products.findIndex(({ id }) => id === removeId);
+  products.splice(index, 1);
+}
