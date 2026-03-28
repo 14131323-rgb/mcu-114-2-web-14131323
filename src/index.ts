@@ -7,6 +7,7 @@ console.log("Product Name = ", productName);
 
 let isShow = true;
 console.log("isShow = ", isShow);
+<<<<<<< HEAD
 
 let createDate = new Date();
 console.log("Create Date = ", createDate);
@@ -15,3 +16,5 @@ let modifyDate: Date | undefined = undefined;
 console.log("Modify Date =", modifyDate);
 
 modifyDate = new Date();
+=======
+>>>>>>> parent of 74daf0d (feat(ts): 利用 undefined 變數宣告產品建檔日期)
