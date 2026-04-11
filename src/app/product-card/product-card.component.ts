@@ -1,8 +1,9 @@
-import { Component,EventEmitter,Input,numberAttribute,Output} from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, Input, numberAttribute, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
@@ -10,11 +11,10 @@ export class ProductCardComponent {
   @Input({ required: true, transform: numberAttribute })
   id!: number;
 
+  @Input()
+  productName!: string;
 
-   @Input()
-   productName!: string;
-
-   @Input()
+  @Input()
   author!: string;
 
   @Input()
@@ -29,7 +29,10 @@ export class ProductCardComponent {
   @Input()
   photoUrl!: string;
 
-   protected onSetDisplay(isShow: boolean): void {
+  @Input()
+  createDate!: Date;
+
+  protected onSetDisplay(isShow: boolean): void {
     this.isShowChange.emit(isShow);
   }
 }
