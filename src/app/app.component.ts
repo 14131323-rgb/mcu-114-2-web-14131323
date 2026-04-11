@@ -17,4 +17,8 @@ export class App {
    protected isShow =true;
 
    protected photoUrl = 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img2';
+   onSetDisplay(isShow: boolean): void {
+    this.isShow = isShow;
+  }
 }
+
