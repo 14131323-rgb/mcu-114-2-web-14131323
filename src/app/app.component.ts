@@ -1,7 +1,6 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
-
-import { ProductCardComponent} from './product-card/product-card.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +10,10 @@ import { ProductCardComponent} from './product-card/product-card.component';
 })
 export class App {
   protected productName = '書籍 A';
-   protected author = '作者甲、作者乙、作者丙';
-   protected company = '博碩文化';
+  protected author = '作者甲、作者乙、作者丙';
+  protected company = '博碩文化';
 
-   protected isShow =true;
+  protected isShow = true;
 
-   protected photoUrl = 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img2';
-   onSetDisplay(isShow: boolean): void {
-    this.isShow = isShow;
-  }
+  protected photoUrl = 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img2';
 }
-
