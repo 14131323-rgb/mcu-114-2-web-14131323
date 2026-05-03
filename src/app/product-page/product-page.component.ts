@@ -48,6 +48,11 @@ export class ProductPageComponent {
   onEdit(product: Product): void {
     this.router.navigate(['product', 'form', product.id]);
   }
+  protected onRemove({ id }: Product): void {
+    this.productService.remove(id);
+    this.pageIndex.set(1);
+    this.getProducts(this.pageIndex(), this.pageSize());
+  }
 
   onView(product: Product): void {
     this.router.navigate(['product', 'view', product.id]);
