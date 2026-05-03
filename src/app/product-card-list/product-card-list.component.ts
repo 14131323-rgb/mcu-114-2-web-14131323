@@ -4,7 +4,7 @@ import { Component, input, output, signal } from '@angular/core';
 import { PaginationComponent } from '../pagination/pagination.component';
 @Component({
   selector: 'app-product-card-list',
-  imports: [PaginationComponent, ProductCardComponent],
+  imports: [ProductCardComponent],
   templateUrl: './product-card-list.component.html',
   styleUrl: './product-card-list.component.scss',
 })
@@ -16,6 +16,4 @@ export class ProductCardListComponent {
   readonly remove = output<Product>();
 
   readonly view = output<Product>();
-
-  readonly pageIndex = signal(1);
 }
