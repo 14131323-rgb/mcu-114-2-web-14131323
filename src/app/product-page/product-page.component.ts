@@ -63,8 +63,11 @@ export class ProductPageComponent {
       price: 10000,
     }),
   ];
+  protected onEdit(product: Product): void {
+    this.router.navigate(['product', 'form', product.id]);
+  }
 
   protected onView(product: Product): void {
-    this.router.navigate(['product', product.id]);
+    this.router.navigate(['product', 'view', product.id]);
   }
 }
