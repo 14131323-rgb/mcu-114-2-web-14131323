@@ -9,7 +9,7 @@ import { booleanAttribute, Component, input, output, model, numberAttribute } fr
   host: { class: 'app-product-card' },
 })
 export class ProductCardComponent {
-  readonly id = input.required<number, string | number>({ transform: numberAttribute });
+  readonly id = input.required<string>();
 
   readonly productName = input<string>();
 
