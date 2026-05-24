@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
 import { Product } from '../model/product';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
@@ -27,6 +27,10 @@ export class ProductFormPageComponent {
     price: new FormControl<number | null>(null, { validators: [Validators.required] }),
   });
 
+  get id(): FormControl<string | null> {
+    return this.form.get('id') as FormControl<string | null>;
+  }
+
   get name(): FormControl<string | null> {
     return this.form.get('name') as FormControl<string | null>;
   }
@@ -46,13 +50,25 @@ export class ProductFormPageComponent {
   get price(): FormControl<string | null> {
     return this.form.get('price') as FormControl<string | null>;
   }
+  constructor() {
+    effect(() => {
+      const product = this.product();
+      if (product) {
+        this.onAddAuthor(product.authors.length);
+        this.form.patchValue(product);
+      }
+    });
+  }
 
-  protected onAddAuthor(): void {
-    const formControl = new FormControl<string | null>(null, { validators: [Validators.required] });
-    this.authors.push(formControl);
+  protected onAddAuthor(count = 1): void {
+    for (let i = 1; i <= count; i++) {
+      const formControl = new FormControl<string | null>(null, { validators: [Validators.required] });
+      this.authors.push(formControl);
+    }
   }
   protected onSave(): void {
     const formData = new Product({
+      id: this.id.value || undefined,
       name: this.name.value!,
       authors: this.authors.value.map((author) => author!),
       company: this.company.value!,
@@ -61,7 +77,8 @@ export class ProductFormPageComponent {
       createDate: new Date(),
       price: +(this.price.value || '0'),
     });
-    this.productService.add(formData).subscribe(() => this.router.navigate(['products']));
+    const action$ = this.id.value ? this.productService.update(formData) : this.productService.add(formData);
+    action$.subscribe(() => this.router.navigate(['products']));
   }
 
   protected onCancel(): void {
